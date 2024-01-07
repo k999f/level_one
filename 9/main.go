@@ -11,6 +11,7 @@ func main() {
 	doubleCh := make(chan int)
 	wg := sync.WaitGroup{}
 
+	// Запускаем горутину, в которой читаем чиcла из канала ch и отправляем их квадрат в doubleCh
 	wg.Add(1)
 	go func() {
 		for n := range ch {
@@ -20,6 +21,7 @@ func main() {
 		wg.Done()
 	}()
 
+	// Запускаем горутину, в которой читаем и печатаем чиcла из канала doubleCh
 	wg.Add(1)
 	go func() {
 		for n := range doubleCh {
@@ -28,6 +30,7 @@ func main() {
 		wg.Done()
 	}()
 
+	// Отправляем числа в канал ch
 	for _, n := range num {
 		ch <- n
 	}

@@ -44,22 +44,28 @@ func getWorkersNum() int {
 }
 
 func main() {
+	// Получаем количество воркеров
 	workersNum := getWorkersNum()
 
 	ch := make(chan int)
 	wg := sync.WaitGroup{}
 
+	// Запускаем в горутине постоянную запись в канал
 	go startWriter(ch)
+	// Запускаем воркеров в отдельных горутинах
 	for i := 0; i < workersNum; i++ {
 		wg.Add(1)
 		go startWorker(ch, i, &wg)
 	}
 
+	// Создаем канал для перехвата нажатия Ctrl+C
 	exit := make(chan os.Signal)
 	signal.Notify(exit, os.Interrupt, syscall.SIGINT)
 
+	// Запускаем горутину, ожидающую значение из канала exit
 	go func() {
 		<-exit
+		// При получении сигнала закрываем каналы
 		close(exit)
 		close(ch)
 	}()

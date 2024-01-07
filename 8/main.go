@@ -16,9 +16,11 @@ func main() {
 
 	fmt.Printf("Number: %d (%b)\n", num, num)
 
+	// Устанавливаем i-ый бит в 1
 	num = bitToOne(num, i)
 	fmt.Printf("Number after setting bit %d to one: %d (%b)\n", i, num, num)
 
+	// Устанавливаем i-ый бит в 0
 	num = bitToZero(num, i)
 	fmt.Printf("Number after setting bit %d to zero: %d (%b)\n", i, num, num)
 }

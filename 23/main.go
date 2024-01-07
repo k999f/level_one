@@ -7,6 +7,7 @@ func main() {
 	i := 5
 	fmt.Println("Original slice: ", sl)
 
+	// Записываем в sl слайс, состоящий из элементов до i-го и элементов после i-го
 	sl = append(sl[:i], sl[i+1:]...)
 
 	fmt.Println("New slice: ", sl)

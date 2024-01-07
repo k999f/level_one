@@ -7,7 +7,9 @@ func main() {
 	groups := make(map[int][]float64)
 
 	for _, t := range temperatures {
+		// Находим группу, к которой принадлежит значение
 		group := int(t/10) * 10
+		// Добавляем значение к группе
 		groups[group] = append(groups[group], t)
 	}
 

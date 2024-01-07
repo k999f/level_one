@@ -14,9 +14,11 @@ func main() {
 		wg.Add(1)
 		go func(i int) {
 			defer wg.Done()
+			// Блокируем доступ к data
 			mu.Lock()
 			fmt.Printf("Goroutine %d wrote key %d\n", i, i)
 			data[i] = fmt.Sprintf("value_%d", i)
+			// Отключаем блокируовку доступа к data
 			mu.Unlock()
 		}(i)
 	}

@@ -6,6 +6,7 @@ import (
 )
 
 func sleep(d time.Duration) {
+	// Приостанавливаем время работы программы на d
 	<-time.After(d)
 }
 

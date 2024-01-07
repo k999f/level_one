@@ -4,7 +4,6 @@ import (
 	"context"
 	"fmt"
 	"math/rand"
-	"sync"
 	"time"
 )
 
@@ -71,17 +70,4 @@ func main() {
 	time.Sleep(2 * time.Second)
 	cancel()
 	time.Sleep(1 * time.Second)
-
-	// Четвертый способ - при помощи WaitGroup
-	wg := sync.WaitGroup{}
-	wg.Add(1)
-	go func() {
-		defer wg.Done()
-		for i := 0; i < 3; i++ {
-			fmt.Println("Goroutine 4 is working")
-			time.Sleep(500 * time.Millisecond)
-		}
-	}()
-	wg.Wait()
-	fmt.Println("Goroutine 4 stopped")
 }
