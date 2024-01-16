@@ -26,7 +26,7 @@ func main() {
 		Name: "Ivan Ivanov",
 		Age:  25,
 	}
-	// Cоздаем структуру Action с вло;енной структурой Human
+	// Cоздаем структуру Action с вложенной структурой Human
 	action := Action{
 		Human:    somebody,
 		Greeting: "Hello",
